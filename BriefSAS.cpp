@@ -70,8 +70,23 @@ void AfficherTache(Tache tache[], int tacheCount) {
     }
     }
 }
+// Fonction Supprimer une tache:
 
+void SupprimerTache(Tache tache[], int *tacheCount, int index) {
+    // Verifier si l'index est valide.
+    if (index >= 1 && index <= *tacheCount) {
 
+        for (int i = index-1; i < *tacheCount - 1; i++) {
+            tache[i] = tache[i + 1];
+        }
+
+        (*tacheCount)--;
+
+        printf("La tache a ete supprimee avec succes.\n");
+    } else {
+        printf("Indice invalide. La tache n'a pas ete supprimee.\n");
+    }
+}
 
 
 //lLa fonction principale Main ()
@@ -82,10 +97,10 @@ int main() {
     int tacheCount = 0;
     int choice;
   
-   	do {
-	 
-	printf("Bienvenue dans votre To Do List  ^_^ \n");
+  	printf("Bienvenue dans votre To Do List  ^_^ \n");
 	printf("\n");
+   	do {
+	
 	printf("    ***Menu:*** \n")	;
 	printf("\n");
 	printf("1.Afficher les taches \n");
@@ -95,7 +110,7 @@ int main() {
 	printf("5.Ordonner les taches\n");
 	printf("6.Filtrer les taches\n");
 	printf("7.Sortir du programme\n");
-	printf("Entrer votre choix:");
+	printf("Entrer votre choix:\n");
     scanf("%d", &choice);
     
     switch (choice) {
@@ -106,7 +121,13 @@ int main() {
     	case 2:  AjouterTache(tache, &tacheCount);
                 break;
                 
-        case 3: 
+        case 3: {
+				int tacheIndex;
+				printf("Donner l'index du tache a supprimer :");
+		      	scanf("%d", &tacheIndex);
+      			SupprimerTache(tache, &tacheCount, tacheIndex);
+		      	break; 
+		      	}
 		      	
 		case 4:    	
 		case 5:
