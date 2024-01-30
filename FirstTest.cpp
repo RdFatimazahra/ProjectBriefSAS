@@ -93,16 +93,16 @@ void SupprimerTache(Tache tache[], int *tacheCount, int index) {
 void ModifierTache(Tache tache[], int tacheCount, int index) {
     if (index >= 1 && index <= tacheCount) {
         printf("Entrer le nouveau titre du tache: ");
-        scanf(" %[^\n]s", tache[index].titre);
+        scanf(" %[^\n]s", tache[index-1].titre);
         
         printf("Entrer la nouvelle description du tache: ");
-        scanf(" %[^\n]s", tache[index].description);
+        scanf(" %[^\n]s", tache[index-1].description);
 
         printf("Entrer la nouvelle date du tache:\n");
-        scanf("%d %d %d", &tache[index].DateCreation.day, &tache[index].DateCreation.month, &tache[index].DateCreation.year);
+        scanf("%d %d %d", &tache[index-1].DateCreation.day, &tache[index-1].DateCreation.month, &tache[index-1].DateCreation.year);
 
         printf("Entrer la nouvelle priorite (1-5): ");
-        scanf("%d", &tache[index].priorite);
+        scanf("%d", &tache[index-1].priorite);
 
         printf("La tache a ete modifiee avec succes.\n");
     } else {

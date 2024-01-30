@@ -88,6 +88,28 @@ void SupprimerTache(Tache tache[], int *tacheCount, int index) {
     }
 }
 
+// Fonction pour modifier une tâche
+
+void ModifierTache(Tache tache[], int tacheCount, int index) {
+    if (index >= 1 && index <= tacheCount) {
+        printf("Entrer le nouveau titre du tache: ");
+        scanf(" %[^\n]s", tache[index-1].titre);
+        
+        printf("Entrer la nouvelle description du tache: ");
+        scanf(" %[^\n]s", tache[index-1].description);
+
+        printf("Entrer la nouvelle date du tache:\n");
+        scanf("%d %d %d", &tache[index-1].DateCreation.day, &tache[index-1].DateCreation.month, &tache[index-1].DateCreation.year);
+
+        printf("Entrer la nouvelle priorite (1-5): ");
+        scanf("%d", &tache[index-1].priorite);
+
+        printf("La tache a ete modifiee avec succes.\n");
+    } else {
+        printf("Indice invalide. La tache n'a pas ete modifiee.\n");
+    }
+}
+
 
 //lLa fonction principale Main ()
 
@@ -129,7 +151,13 @@ int main() {
 		      	break; 
 		      	}
 		      	
-		case 4:    	
+		case 4:  {
+   				 int tacheIndex;
+   				 printf("Donner l'index de la tache a modifier :");
+   				 scanf("%d", &tacheIndex);
+   				 ModifierTache(tache, tacheCount, tacheIndex);
+    			break;
+				}  	
 		case 5:
     			
     	case 7: printf("Exiting program.\n");
