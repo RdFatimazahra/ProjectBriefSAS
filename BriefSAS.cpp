@@ -109,6 +109,25 @@ void ModifierTache(Tache tache[], int tacheCount, int index) {
         printf("Indice invalide. La tache n'a pas ete modifiee.\n");
     }
 }
+ 
+//Fonction Filtrer Par Priorite:
+
+void FiltrerTachesParPriorite(Tache tache[], int tacheCount, int filterPriority) {
+    if (tacheCount == 0) {
+        printf("Aucune tache a afficher, veuillez ajouter une tache!\n");
+    } else {
+        printf("La liste des taches avec priorite %d :\n", filterPriority);
+
+        for (int i = 0; i < tacheCount; i++) {
+            if (filterPriority == 0 || tache[i].priorite == filterPriority) {
+                printf("%d. Titre: %s\n   Description: %s\n   Date: %02d/%02d/%d\n   Priorite: %d\n",
+                       i + 1, tache[i].titre, tache[i].description,
+                       tache[i].DateCreation.day, tache[i].DateCreation.month, tache[i].DateCreation.year,
+                       tache[i].priorite);
+            }
+        }
+    }
+}
 
 
 //lLa fonction principale Main ()
@@ -158,7 +177,14 @@ int main() {
    				 ModifierTache(tache, tacheCount, tacheIndex);
     			break;
 				}  	
-		case 5:
+		case 5: case 6:{
+                int filterPriority;
+                printf("Entrer la priorite pour filtrer les taches (1-5, 0 pour toutes les priorites): ");
+                scanf("%d", &filterPriority);
+                FiltrerTachesParPriorite(tache, tacheCount, filterPriority);
+                break;
+            }
+            
     			
     	case 7: printf("Exiting program.\n");
                 break;
